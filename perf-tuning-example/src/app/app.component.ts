@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'perf-tuning-example';
+  // @ts-ignore
+  alphaVantageApiKey = process.env.ALPHA_VANTAGE_API_KEY;
 }
