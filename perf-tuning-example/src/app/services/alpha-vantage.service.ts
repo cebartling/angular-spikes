@@ -6,7 +6,7 @@ import {map} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class AlphaVantageServiceService {
+export class AlphaVantageService {
 
   private readonly ALPHA_VANTAGE_BASE_URL = 'https://www.alphavantage.co/query';
 
@@ -14,10 +14,11 @@ export class AlphaVantageServiceService {
   }
 
   getSymbolSearch(keywords: string): Observable<any> {
+    // @ts-ignore
     const url = `${this.ALPHA_VANTAGE_BASE_URL}?function=SYMBOL_SEARCH&keywords=${keywords}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`;
     return this.http.get(url).pipe(map((response) => {
       // @ts-ignore
-      return response.json() as any;
+      return response.bestMatches as any;
     }));
   }
 }
